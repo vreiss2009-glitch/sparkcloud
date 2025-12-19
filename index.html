@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,25 +16,28 @@
     .card { background: #131a2a; padding: 30px; border-radius: 14px; box-shadow: 0 0 20px rgba(0,0,0,0.4); text-align: center; }
     .card h3 { margin-bottom: 10px; }
     .price { font-size: 1.8rem; margin: 12px 0; color: #00d4ff; }
-    footer { background: #070b14; padding: 30px; text-align: center; font-size: 0.9rem; }
+    footer { background: #070b14; padding: 30px; text-align: center; font-size: 0.9rem; }/* Mobile */
+@media (max-width: 600px) {
+  header h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+  .price { font-size: 1.5rem; }
+}
 
-    /* Mobile */
-    @media (max-width: 600px) {
-      header h1 { font-size: 2.2rem; }
-      h2 { font-size: 1.8rem; }
-      .price { font-size: 1.5rem; }
-    }
+/* Animações Gamer */
+.card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card:hover { transform: translateY(-8px); box-shadow: 0 0 25px rgba(0,212,255,0.6); }
+header { animation: fadeIn 1.2s ease-in; }
+section { animation: fadeUp 1s ease-in; }
+@keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+@keyframes fadeUp { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
+
   </style>
 </head>
-<body>
-
-<header>
+<body><header>
   <h1>⚡ SparkCloud</h1>
   <p>Cloud PC Gamer de alta performance para FiveM e jogos em geral</p>
   <a class="btn" href="#contato">Entrar no Discord</a>
-</header>
-
-<section>
+</header><section>
   <h2>Por que escolher a SparkCloud?</h2>
   <div class="features">
     <div class="card">
@@ -51,9 +53,7 @@
       <p>Ideal para RP e partidas online.</p>
     </div>
   </div>
-</section>
-
-<section>
+</section><section>
   <h2>Planos por Hora</h2>
   <div class="hours">
     <div class="card"><h3>1 Hora</h3><p class="price">R$ 3</p><a class="btn" href="#contato">Comprar</a></div>
@@ -62,26 +62,20 @@
     <div class="card"><h3>4 Horas</h3><p class="price">R$ 12</p><a class="btn" href="#contato">Comprar</a></div>
     <div class="card"><h3>5 Horas</h3><p class="price">R$ 15</p><a class="btn" href="#contato">Comprar</a></div>
   </div>
-</section>
-
-<section>
+</section><section>
   <h2>Planos por Dias</h2>
   <div class="plans">
     <div class="card"><h3>7 Dias</h3><p class="price">R$ 50</p><a class="btn" href="#contato">Comprar</a></div>
     <div class="card"><h3>15 Dias</h3><p class="price">R$ 80</p><a class="btn" href="#contato">Comprar</a></div>
     <div class="card"><h3>30 Dias</h3><p class="price">R$ 115</p><a class="btn" href="#contato">Comprar</a></div>
   </div>
-</section>
-
-<section>
+</section><section>
   <h2>Perguntas Frequentes (FAQ)</h2>
   <div class="card"><strong>Roda FiveM?</strong><p>Sim, nossas máquinas são otimizadas para FiveM e RP.</p></div><br>
   <div class="card"><strong>Posso usar para outros jogos?</strong><p>Sim, qualquer jogo compatível com Windows.</p></div><br>
   <div class="card"><strong>Entrega é imediata?</strong><p>Após confirmação do pagamento.</p></div><br>
   <div class="card"><strong>Qual forma de pagamento?</strong><p>Pix e checkout automático.</p></div>
-</section>
-
-<section>
+</section><section>
   <h2>Termos de Uso</h2>
   <div class="card">
     <p>• Proibido uso para atividades ilegais.<br>
@@ -90,20 +84,37 @@
        • Não nos responsabilizamos por bans em jogos.<br>
        • Reembolso apenas em falha comprovada do serviço.</p>
   </div>
-</section>
-
-<section id="contato">
+</section><section id="contato">
   <h2>Entre no nosso Discord</h2>
   <div class="card">
     <p>Suporte rápido, dúvidas e contratação pelo Discord.</p>
-    <a class="btn" href="https://discord.gg/seuservidor">Acessar Discord</a>
+    <a class="btn" href="https://discord.gg/sparkcloud">Acessar Discord</a>
   </div>
-</section>
-
-<footer>
+</section><footer>
   <p>© 2025 SparkCloud — Cloud PC Gamer</p>
   <p>FiveM é marca registrada da Rockstar Games. Não somos afiliados.</p>
-</footer>
+</footer><!-- Modal Pix --><div id="pixModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); align-items:center; justify-content:center;">
+  <div class="card" style="max-width:400px;">
+    <h3>Pagar com Pix</h3>
+    <p>Banco: Nubank</p>
+    <p>Após o pagamento, entre no Discord para liberação.</p>
+    <p><strong>Chave Pix:</strong><br> viniciusreiscr@gmail.com</p>
+    <a class="btn" href="https://discord.gg/sparkcloud">Ir para o Discord</a><br><br>
+    <a class="btn" onclick="fecharPix()">Fechar</a>
+  </div>
+</div><script>
+  function abrirPix(){ document.getElementById('pixModal').style.display='flex'; }
+  function fecharPix(){ document.getElementById('pixModal').style.display='none'; }
 
-</body>
-</html>
+  // Contador regressivo simples (exemplo 5 horas)
+  let tempo = 5 * 60 * 60;
+  setInterval(() => {
+    if(tempo > 0){ tempo--; }
+    const h = Math.floor(tempo/3600);
+    const m = Math.floor((tempo%3600)/60);
+    const s = tempo%60;
+    const el = document.getElementById('contador');
+    if(el) el.innerText = `Tempo restante: ${h}h ${m}m ${s}s`;
+  },1000);
+</script></body>
+                                        </html>
