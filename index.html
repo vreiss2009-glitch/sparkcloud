@@ -56,11 +56,11 @@ section { animation: fadeUp 1s ease-in; }
 </section><section>
   <h2>Planos por Hora</h2>
   <div class="hours">
-    <div class="card"><h3>1 Hora</h3><p class="price">R$ 3</p><a class="btn" href="#contato">Comprar</a></div>
-    <div class="card"><h3>2 Horas</h3><p class="price">R$ 5</p><a class="btn" href="#contato">Comprar</a></div>
-    <div class="card"><h3>3 Horas</h3><p class="price">R$ 8</p><a class="btn" href="#contato">Comprar</a></div>
-    <div class="card"><h3>4 Horas</h3><p class="price">R$ 12</p><a class="btn" href="#contato">Comprar</a></div>
-    <div class="card"><h3>5 Horas</h3><p class="price">R$ 15</p><a class="btn" href="#contato">Comprar</a></div>
+    <div class="card"><h3>1 Hora</h3><p class="price">R$ 3</p><a class="btn" href="#contato"><a class="btn" onclick="abrirPix()">Pagar com Pix</a>
+    <div class="card"><h3>2 Horas</h3><p class="price">R$ 5</p><a class="btn" href="#contato"><a class="btn" onclick="abrirPix()">Pagar com Pix</a>
+    <div class="card"><h3>3 Horas</h3><p class="price">R$ 8</p><a class="btn" href="#contato"><a class="btn" onclick="abrirPix()">Pagar com Pix</a>
+    <div class="card"><h3>4 Horas</h3><p class="price">R$ 12</p><a class="btn" href="#contato"><a class="btn" onclick="abrirPix()">Pagar com Pix</a>
+    <div class="card"><h3>5 Horas</h3><p class="price">R$ 15</p><a class="btn" href="#contato"><a class="btn" onclick="abrirPix()">Pagar com Pix</a>
   </div>
 </section><section>
   <h2>Planos por Dias</h2>
@@ -116,5 +116,12 @@ section { animation: fadeUp 1s ease-in; }
     const el = document.getElementById('contador');
     if(el) el.innerText = `Tempo restante: ${h}h ${m}m ${s}s`;
   },1000);
+  <!-- Modal Pix -->
+<div id="pixModal"> ... </div>
+  <script>
+  function abrirPix() { ... }
+  function fecharPix() { ... }
+  // contador regressivo
+</script>
 </script></body>
                                         </html>
