@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | SparkCloud</title>
+<style>
+body{background:#050713;color:#fff;font-family:Arial;display:flex;align-items:center;justify-content:center;min-height:100vh}
+.panel{background:#0b0f2a;border:1px solid #7c3aed;border-radius:16px;padding:25px;width:90%;max-width:420px;box-shadow:0 0 30px rgba(124,58,237,.5)}
+h1{text-align:center;background:linear-gradient(90deg,#7c3aed,#22d3ee);-webkit-background-clip:text;color:transparent}
+select,textarea,button{width:100%;margin-top:12px;padding:12px;border-radius:10px;border:none;font-size:15px}
+button{background:linear-gradient(90deg,#7c3aed,#22d3ee);color:#fff;font-weight:bold;cursor:pointer}
+textarea{resize:none;height:80px}
+</style>
+</head>
+<body>
+<div class="panel">
+<h1>Admin SparkCloud</h1>
+<p>Status do Serviço</p>
+<select id="status">
+<option value="online">🟢 Online</option>
+<option value="instability">🟡 Instabilidade</option>
+<option value="offline">🔴 Offline</option>
+</select>
+<textarea id="notice" placeholder="Aviso do sistema"></textarea>
+<button onclick="salvar()">Salvar Status</button>
+</div>
+<script>
+function salvar(){
+ localStorage.setItem('spark_status',document.getElementById('status').value);
+ localStorage.setItem('spark_notice',document.getElementById('notice').value);
+ alert('Status atualizado');
+}
+</script>
+</body>
+</html>
