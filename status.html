@@ -1,38 +1,188 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Status do Serviço | SparkCloud</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
-    body { background: #0b0f1a; color: #ffffff; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-    .container { max-width: 600px; width: 100%; padding: 20px; }
-    .card { background: #131a2a; border-radius: 16px; padding: 35px; box-shadow: 0 0 25px rgba(0,0,0,0.5); text-align: center; animation: fadeIn 1s ease-in; }
-    h1 { font-size: 2.2rem; margin-bottom: 15px; }
-    p { margin-bottom: 25px; color: #cbd5e1; }
-    .status { display: flex; align-items: center; justify-content: center; gap: 15px; font-size: 1.4rem; font-weight: bold; }
-    .dot { width: 14px; height: 14px; border-radius: 50%; }
-    .online { background: #22c55e; box-shadow: 0 0 12px #22c55e; }
-    .instabilidade { background: #facc15; box-shadow: 0 0 12px #facc15; }
-    .offline { background: #ef4444; box-shadow: 0 0 12px #ef4444; }
-    .btn { display: inline-block; margin-top: 30px; padding: 14px 30px; background: linear-gradient(135deg, #6f00ff, #00d4ff); color: #fff; text-decoration: none; border-radius: 10px; font-weight: bold; }@keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Status | SparkCloud</title>
 
-  </style>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #0a0f2c, #050713);
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  background: linear-gradient(90deg, #7c3aed, #22d3ee);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+header p {
+  color: #cbd5f5;
+  margin-top: 8px;
+}
+
+/* STATUS BOX */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.status-box {
+  background: linear-gradient(160deg, #0b0f2a, #11163a);
+  border: 1px solid rgba(140,100,255,.35);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 25px rgba(120,80,255,.25);
+}
+
+.status-info h3 {
+  color: #a78bfa;
+  margin-bottom: 5px;
+}
+
+.status-info p {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* BADGES */
+.badge {
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.online {
+  background: rgba(34,197,94,.2);
+  color: #22c55e;
+  border: 1px solid #22c55e;
+}
+
+.instability {
+  background: rgba(250,204,21,.2);
+  color: #facc15;
+  border: 1px solid #facc15;
+}
+
+.offline {
+  background: rgba(239,68,68,.2);
+  color: #ef4444;
+  border: 1px solid #ef4444;
+}
+
+/* AVISO */
+.notice {
+  background: linear-gradient(90deg, #7c3aed, #22d3ee);
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 25px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(120,80,255,.4);
+}
+
+.notice strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  background: linear-gradient(90deg, #7c3aed, #22d3ee);
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+</style>
 </head>
-<body>  <div class="container">
-    <div class="card">
-      <h1>⚡ Status da SparkCloud</h1>
-      <p>Acompanhe em tempo real a situação do nosso serviço</p><!-- STATUS ATUAL -->
-  <div class="status">
-    <span class="dot online"></span>
-    <span>ONLINE</span>
+
+<body>
+
+<header>
+  <h1>Status da SparkCloud</h1>
+  <p>Acompanhe o funcionamento dos serviços</p>
+</header>
+
+<div class="container">
+
+  <div class="status-box">
+    <div class="status-info">
+      <h3>Cloud PC Gamer</h3>
+      <p>Máquinas virtuais para jogos</p>
+    </div>
+    <span class="badge online">🟢 Operacional</span>
   </div>
 
-  <!-- 
-    class="dot online" e texto ONLINE
+  <div class="status-box">
+    <div class="status-info">
+      <h3>FiveM</h3>
+      <p>Conexão com cidades RP</p>
+    </div>
+    <span class="badge online">🟢 Online</span>
+  </div>
 
-  <a class="btn" href="index.html">Voltar para o site</a>
+  <div class="status-box">
+    <div class="status-info">
+      <h3>Jogos em Geral</h3>
+      <p>Steam, Epic, Rockstar</p>
+    </div>
+    <span class="badge online">🟢 Online</span>
+  </div>
+
+  <div class="status-box">
+    <div class="status-info">
+      <h3>Pagamentos Pix</h3>
+      <p>Liberação semi-automática</p>
+    </div>
+    <span class="badge online">🟢 Funcionando</span>
+  </div>
+
+  <!-- AVISO MANUAL -->
+  <div class="notice">
+    <strong>📢 Aviso</strong>
+    Nenhuma instabilidade no momento.
+  </div>
+
 </div>
 
-  </div></body>
-    </html>
+<footer>
+  SparkCloud © 2025  
+  <br>
+  <a class="btn" href="index.html">Voltar ao site</a>
+</footer>
+
+</body>
+      </html>
