@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SparkCloud | Minhas Horas</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #0a0f2c, #050713);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.box {
+  background: linear-gradient(160deg, #0b0f2a, #11163a);
+  border: 1px solid rgba(140,100,255,.4);
+  border-radius: 18px;
+  padding: 30px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(120,80,255,.4);
+}
+
+h1 {
+  background: linear-gradient(90deg, #7c3aed, #22d3ee);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.timer {
+  font-size: 2.4rem;
+  margin: 20px 0;
+  color: #22c55e;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, #7c3aed, #22d3ee);
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn.red {
+  background: linear-gradient(90deg, #ef4444, #f97316);
+}
+
+.alert {
+  margin-top: 12px;
+  color: #facc15;
+  display: none;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h1>SparkCloud</h1>
+  <p>Tempo Restante</p>
+
+  <div class="timer" id="timer">00:00:00</div>
+
+  <select id="planSelect">
+    <option value="">Selecione o plano comprado</option>
+    <option value="1">1 Hora</option>
+    <option value="2">2 Horas</option>
+    <option value="3">3 Horas</option>
+    <option value="4">4 Horas</option>
+    <option value="5">5 Horas</option>
+    <option value="168">7 Dias</option>
+    <option value="360">15 Dias</option>
+    <option value="720">30 Dias</option>
+  </select>
+
+  <button class="btn" onclick="ativarPlano()">Ativar Plano</button>
+  <button class="btn red" onclick="resetar()">Resetar</button>
+
+  <div class="alert" id="alerta">⚠️ Faltam menos de 10 minutos!</div>
+</div>
+
+<script>
+let intervalo;
+
+function ativarPlano() {
+  const horas = parseInt(document.getElementById('planSelect').value);
+  if (!horas) return;
+
+  const fim = Date.now() + horas * 60 * 60 * 1000;
+  localStorage.setItem('sparkcloud_fim', fim);
+  localStorage.setItem('sparkcloud_alerta', 'false');
+  iniciarContador();
+}
+
+function iniciarContador() {
+  clearInterval(intervalo);
+
+  intervalo = setInterval(() => {
+    const fim = localStorage.getItem('sparkcloud_fim');
+    if (!fim) return;
+
+    const restante = fim - Date.now();
+
+    if (restante <= 0) {
+      clearInterval(intervalo);
+      localStorage.removeItem('sparkcloud_fim');
+      document.getElementById('timer').innerText = '00:00:00';
+      alert('Seu tempo acabou!');
+      return;
+    }
+
+    const h = Math.floor(restante / 3600000);
+    const m = Math.floor((restante % 3600000) / 60000);
+    const s = Math.floor((restante % 60000) / 1000);
+
+    document.getElementById('timer').innerText =
+      String(h).padStart(2,'0') + ':' +
+      String(m).padStart(2,'0') + ':' +
+      String(s).padStart(2,'0');
+
+    // ALERTA 10 MIN
+    if (restante <= 600000 && localStorage.getItem('sparkcloud_alerta') !== 'true') {
+      document.getElementById('alerta').style.display = 'block';
+      alert('⚠️ Atenção: faltam menos de 10 minutos!');
+      localStorage.setItem('sparkcloud_alerta', 'true');
+    }
+
+  }, 1000);
+}
+
+function resetar() {
+  clearInterval(intervalo);
+  localStorage.clear();
+  document.getElementById('timer').innerText = '00:00:00';
+  document.getElementById('alerta').style.display = 'none';
+}
+
+iniciarContador();
+</script>
+
+</body>
+</html>
