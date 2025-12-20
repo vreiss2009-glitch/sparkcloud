@@ -1,188 +1,229 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SparkCloud | Cloud PC Gamer</title>  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SparkCloud | Cloud PC Gamer</title>
 
-    body {
-      background: radial-gradient(circle at top, #11162a, #070b14);
-      color: #fff;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
-    header {
-      padding: 80px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #6f00ff, #00d4ff);
-      animation: fadeIn 1.2s ease-in;
-    }
+body {
+  background: radial-gradient(circle at top, #0a0f2c, #050713);
+  color: #fff;
+}
 
-    header h1 { font-size: 3rem; }
-    header p { margin-top: 15px; font-size: 1.2rem; }
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  padding: 40px 20px;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 32px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #6f00ff, #00d4ff);
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: transform .2s ease, box-shadow .2s ease;
-      cursor: pointer;
-    }
+header h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, #7c3aed, #22d3ee);
+  -webkit-background-clip: text;
+  color: transparent;
+}
 
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 25px rgba(0,212,255,.6);
-    }
+header p {
+  margin-top: 10px;
+  color: #cbd5f5;
+}
 
-    section {
-      padding: 70px 20px;
-      max-width: 1200px;
-      margin: auto;
-      animation: fadeUp 1s ease-in;
-    }
+/* ===== PLANOS ===== */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
 
-    h2 { text-align:center; font-size:2.3rem; margin-bottom:50px; }
+.plan {
+  background: linear-gradient(160deg, #0b0f2a, #11163a);
+  border-radius: 16px;
+  padding: 22px;
+  text-align: center;
+  border: 1px solid rgba(140,100,255,.3);
+  box-shadow: 0 0 25px rgba(120,80,255,.25);
+  transition: transform .3s, box-shadow .3s;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
-      gap: 30px;
-    }
+.plan:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(120,80,255,.5);
+}
 
-    .card {
-      background: linear-gradient(180deg, #131a2a, #0b1020);
-      padding: 35px 25px;
-      border-radius: 18px;
-      text-align: center;
-      box-shadow: 0 0 25px rgba(0,0,0,.5);
-      transition: transform .3s ease, box-shadow .3s ease;
-      position: relative;
-      overflow: hidden;
-    }
+.plan h3 {
+  color: #a78bfa;
+  margin-bottom: 10px;
+}
 
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(0,212,255,.25), transparent);
-      opacity: 0;
-      transition: opacity .3s ease;
-    }
+.price {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #22c55e;
+}
 
-    .card:hover::before { opacity: 1; }
+.btn {
+  display: inline-block;
+  padding: 12px 18px;
+  background: linear-gradient(90deg, #7c3aed, #22d3ee);
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity .3s;
+}
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 30px rgba(111,0,255,.6);
-    }
+.btn:hover {
+  opacity: .85;
+}
 
-    .price {
-      font-size: 2.2rem;
-      margin: 15px 0;
-      color: #00d4ff;
-    }
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #94a3b8;
+}
 
-    footer {
-      background:#05080f;
-      padding:30px 20px;
-      text-align:center;
-      font-size:.9rem;
-      color:#9ca3af;
-    }
+/* ===== MODAL PIX ===== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(5,5,15,.85);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
 
-    /* MODAL PIX */
-    .modal {
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.85);
-      align-items:center;
-      justify-content:center;
-      z-index:999;
-    }
+.modal-content {
+  background: linear-gradient(160deg, #0b0f2a, #11163a);
+  border-radius: 18px;
+  padding: 28px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  border: 1px solid rgba(140,100,255,.4);
+  box-shadow: 0 0 40px rgba(120,80,255,.4);
+  animation: modalIn .3s ease;
+}
 
-    .modal-content {
-      background: linear-gradient(180deg, #141a33, #0b1020);
-      border-radius: 20px;
-      padding: 35px;
-      max-width: 420px;
-      width: 100%;
-      text-align: center;
-      animation: fadeUp .4s ease;
-      box-shadow: 0 0 40px rgba(0,212,255,.5);
-    }
+@keyframes modalIn {
+  from {transform: scale(.85); opacity: 0;}
+  to {transform: scale(1); opacity: 1;}
+}
 
-    .modal-content h3 { margin-bottom: 15px; }
+.modal-content h2 {
+  color: #a78bfa;
+}
 
-    .pix-box {
-      margin: 20px 0;
-      padding: 15px;
-      border-radius: 12px;
-      background: #05080f;
-      font-weight: bold;
-      color: #00d4ff;
-      word-break: break-all;
-    }
+.modal-content p {
+  font-size: 14px;
+  color: #cbd5f5;
+  margin-top: 10px;
+}
 
-    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-    @keyframes fadeUp { from{opacity:0; transform:translateY(25px)} to{opacity:1; transform:translateY(0)} }
+.pix-box {
+  margin: 18px 0;
+  padding: 14px;
+  background: #0a0e24;
+  border: 1px dashed #7c3aed;
+  border-radius: 12px;
+  color: #22c55e;
+  font-weight: bold;
+  word-break: break-all;
+}
+</style>
+</head>
 
-    @media(max-width:600px){
-      header h1{font-size:2.3rem}
-      h2{font-size:1.9rem}
-    }
-  </style></head>
-<body><header>
-  <h1>⚡ SparkCloud</h1>
-  <p>Cloud PC Gamer de alto desempenho para FiveM e jogos em geral</p>
-  <a class="btn" href="#planos">Ver Planos</a>
-</header><section>
-  <h2>Por que escolher a SparkCloud?</h2>
-  <div class="grid">
-    <div class="card"><h3>🎮 FPS Alto</h3><p>Máquinas otimizadas para RP e jogos pesados.</p></div>
-    <div class="card"><h3>⚡ Liberação Rápida</h3><p>Pagamento confirmado, acesso liberado.</p></div>
-    <div class="card"><h3>🌐 Estabilidade</h3><p>Conexão confiável para jogar sem lag.</p></div>
+<body>
+
+<header>
+  <h1>SparkCloud</h1>
+  <p>Cloud PC Gamer • FiveM e Jogos em Geral</p>
+</header>
+
+<section class="plans">
+  <div class="plan">
+    <h3>1 Hora</h3>
+    <p class="price">R$ 3</p>
+    <a class="btn" onclick="abrirPix()">Pagar com Pix</a>
   </div>
-</section><section id="planos">
-  <h2>Planos por Hora</h2>
-  <div class="grid">
-    <div class="card"><h3>1 Hora</h3><p class="price">R$ 3</p><a class="btn" onclick="abrirPix()">Pagar com Pix</a></div>
-    <div class="card"><h3>2 Horas</h3><p class="price">R$ 5</p><a class="btn" onclick="abrirPix()">Pagar com Pix</a></div>
-    <div class="card"><h3>3 Horas</h3><p class="price">R$ 8</p><a class="btn" onclick="abrirPix()">Pagar com Pix</a></div>
-    <div class="card"><h3>4 Horas</h3><p class="price">R$ 12</p><a class="btn" onclick="abrirPix()">Pagar com Pix</a></div>
-    <div class="card"><h3>5 Horas</h3><p class="price">R$ 15</p><a class="btn" onclick="abrirPix()">Pagar com Pix</a></div>
+
+  <div class="plan">
+    <h3>2 Horas</h3>
+    <p class="price">R$ 5</p>
+    <a class="btn" onclick="abrirPix()">Pagar com Pix</a>
   </div>
-</section><section>
-  <h2>Planos por Dias</h2>
-  <div class="grid">
-    <div class="card"><h3>7 Dias</h3><p class="price">R$ 50</p><a class="btn" onclick="abrirPix()">Pagar com Pix</a></div>
-    <div class="card"><h3>15 Dias</h3><p class="price">R$ 80</p><a class="btn" onclick="abrirPix()">Pagar com Pix</a></div>
-    <div class="card"><h3>30 Dias</h3><p class="price">R$ 115</p><a class="btn" onclick="abrirPix()">Pagar com Pix</a></div>
+
+  <div class="plan">
+    <h3>5 Horas</h3>
+    <p class="price">R$ 15</p>
+    <a class="btn" onclick="abrirPix()">Pagar com Pix</a>
   </div>
-</section><section>
-  <h2>Status do Serviço</h2>
-  <div class="card">
-    <p>Veja a situação atual dos nossos servidores.</p>
-    <a class="btn" href="status.html">Ver Status</a>
+
+  <div class="plan">
+    <h3>7 Dias</h3>
+    <p class="price">R$ 50</p>
+    <a class="btn" onclick="abrirPix()">Pagar com Pix</a>
   </div>
-</section><footer>
-  <p>© 2025 SparkCloud — Cloud PC Gamer</p>
-  <p>FiveM é marca registrada da Rockstar Games. Não somos afiliados.</p>
-</footer><!-- MODAL PIX --><div class="modal" id="pixModal">
+
+  <div class="plan">
+    <h3>30 Dias</h3>
+    <p class="price">R$ 115</p>
+    <a class="btn" onclick="abrirPix()">Pagar com Pix</a>
+  </div>
+</section>
+
+<footer>
+  <p>SparkCloud © 2025 • Não afiliado à Rockstar Games</p>
+  <a class="btn" href="status.html">Ver Status</a>
+</footer>
+
+<!-- MODAL PIX -->
+<div class="modal" id="pixModal">
   <div class="modal-content">
-    <h3>Pagamento via Pix</h3>
-    <p>Banco: Nubank</p>
-    <div class="pix-box">viniciusreiscr@gmail.com</div>
-    <p>Após o pagamento, entre no nosso Discord para liberação.</p>
-    <a class="btn" href="https://discord.gg/seuservidor">Ir para o Discord</a><br><br>
+    <h2>Pagamento via Pix</h2>
+
+    <p>Chave Pix (Nubank)</p>
+
+    <div class="pix-box">
+      sreiscr@gmail.com
+    </div>
+
+    <p>Após pagar, envie o comprovante no Discord para liberação.</p>
+
+    <a class="btn" href="https://discord.gg/seuservidor" target="_blank">
+      Ir para o Discord
+    </a>
+
+    <br><br>
+
     <a class="btn" onclick="fecharPix()">Fechar</a>
   </div>
-</div><script>
-  function abrirPix(){ document.getElementById('pixModal').style.display='flex'; }
-  function fecharPix(){ document.getElementById('pixModal').style.display='none'; }
-</script></body>
-                                                                 </html>
+</div>
+
+<script>
+function abrirPix() {
+  document.getElementById('pixModal').style.display = 'flex';
+}
+
+function fecharPix() {
+  document.getElementById('pixModal').style.display = 'none';
+}
+</script>
+
+</body>
+  </html>
